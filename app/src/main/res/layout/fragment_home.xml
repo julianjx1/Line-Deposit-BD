@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+
+    tools:context=".view.fragment.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_withdraw"
+            android:layout_width="250sp"
+            android:layout_height="100sp"
+            android:text="@string/withdraw"
+            android:backgroundTint="@color/red"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_deposit"
+            android:layout_width="250sp"
+            android:layout_height="100sp"
+            android:text="@string/deposit"
+            app:backgroundTint="@color/green"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_show_transactions"
+            android:layout_width="250sp"
+            android:layout_height="100sp"
+            android:text="@string/show_transactions"/>
+
+    </LinearLayout>
+
+</FrameLayout>

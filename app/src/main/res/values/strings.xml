@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Line Deposit BD</string>
+    <string name="open_drawer">Open navigation drawer</string>
+    <string name="close_drawer">Close navigation drawer</string>
+
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="ar_cable_network">AR Cable Network</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="full_address">Full address</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="email">Email</string>
+    <string name="refer_code">Refer code</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="address">Address</string>
+    <string name="mac_address">MAC Address</string>
+    <string name="create_account">Create Account</string>
+    <string name="submit_your_youtube_video">Submit your youtube video</string>
+    <string name="income">Income</string>
+    <string name="referal_link">Referal Link</string>
+    <string name="home">Home</string>
+    <string name="submit">Submit</string>
+    <string name="submit_your_youtube_video_link">Submit your youtube video link</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="deposit">Deposit</string>
+    <string name="show_transactions">Show transactions</string>
+    <string name="payment_type">Payment type</string>
+    <string name="transaction_id">Transaction Id</string>
+    <string name="amount">Amount</string>
+</resources>
