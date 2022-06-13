@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AR_Cable.iml" filepath="$PROJECT_DIR$/.idea/modules/AR_Cable.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AR_Cable.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AR_Cable.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AR_Cable.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AR_Cable.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AR_Cable.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AR_Cable.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AR_Cable.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AR_Cable.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Line_Deposit_BD.iml" filepath="$PROJECT_DIR$/.idea/modules/Line_Deposit_BD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Line_Deposit_BD.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Line_Deposit_BD.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Line_Deposit_BD.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Line_Deposit_BD.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Line_Deposit_BD.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Line_Deposit_BD.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Line_Deposit_BD.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Line_Deposit_BD.app.unitTest.iml" />
     </modules>
   </component>
 </project>

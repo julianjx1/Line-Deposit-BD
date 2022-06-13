@@ -37,4 +37,15 @@
     <string name="payment_type">Payment type</string>
     <string name="transaction_id">Transaction Id</string>
     <string name="amount">Amount</string>
+    <string name="bkash">BKash</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="transaction_process">Process</string>
+    <string name="date">Date</string>
+    <string name="withdraw_request">Withdraw Request</string>
+    <string name="deposit_request">Deposit Request</string>
+    <string name="accept">Accept</string>
+    <string name="save">Save</string>
+    <string name="change_transaction_number">Change Transaction Number</string>
+    <string name="reference_username_if_any">Reference username (if any)</string>
+    <string name="logout">Logout</string>
 </resources>
