@@ -2,6 +2,7 @@ package com.line_deposit.test.bd.view.fragment.user;
 
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,67 +10,67 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import com.line_deposit.test.bd.R;
+import com.line_deposit.test.bd.databinding.FragmentDepositBinding;
+import com.line_deposit.test.bd.model.PaymentType;
+import com.line_deposit.test.bd.model.Transaction;
+import com.line_deposit.test.bd.model.TransactionProcess;
+import com.line_deposit.test.bd.utilites.Constant;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DepositFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DepositFragment extends Fragment {
+import java.util.Calendar;
+import java.util.Objects;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public DepositFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DepositFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DepositFragment newInstance(String param1, String param2) {
-        DepositFragment fragment = new DepositFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+public class DepositFragment extends Fragment implements TransactionObserver{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_deposit, container, false);
+
+        FragmentDepositBinding binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_deposit, container, false);
+        Constant.network.transactionObserver = this;
         String[] type = new String[] {"BKash", "Nagad", "UPay"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), R.layout.drop_down_item,type);
-        AutoCompleteTextView autoCompleteTextView = view.findViewById(R.id.deposit_account_type);
-        autoCompleteTextView.setAdapter(adapter);
-        return  view;
+        binding.depositAccountType.setAdapter(adapter);
+        binding.depositAccountType.setText(type[0]);
+        binding.btnDepositAmount.setOnClickListener(v -> {
+            String mobileNumber = Objects.requireNonNull(binding.etMobileNumberDeposit.getText()).toString();
+            String amountText = Objects.requireNonNull(binding.etDepositAmount.getText()).toString();
+            String transactionId = Objects.requireNonNull(binding.etTransactionId.getText()).toString();
+            int amount = Integer.parseInt(amountText);
+            if (amount <= 0){
+                Toast.makeText(requireContext(), "Amount must be greater than 0", Toast.LENGTH_SHORT).show();;
+                return;
+            }
+            if (transactionId.isEmpty()){
+                Toast.makeText(requireContext(), "Transaction Id must be filled up", Toast.LENGTH_SHORT).show();;
+                return;
+            }
+            Transaction transaction = new Transaction();
+            transaction.mobileNumber = mobileNumber;
+            transaction.amount = amount;
+            transaction.transactionId = transactionId;
+            transaction.paymentType = PaymentType.Deposit;
+            transaction.transactionType = binding.depositAccountType.getText().toString();
+            transaction.transactionProcess = TransactionProcess.Processing;
+            Calendar calendar = Calendar.getInstance();
+            transaction.year = String.valueOf(calendar.get(Calendar.YEAR));
+            transaction.month = String.valueOf(calendar.get(Calendar.MONTH)+1);
+            transaction.day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+            Constant.network.userTransaction(transaction);
+        });
+
+        return  binding.getRoot();
 
 
+    }
+
+    @Override
+    public void onTransactionUpdate(Boolean success, String message) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

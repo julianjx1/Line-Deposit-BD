@@ -45,7 +45,7 @@ public class RequestTransactionsAdapter extends RecyclerView.Adapter<RequestTran
     public void onBindViewHolder(@NonNull RequestTransactionsAdapter.ViewHolder holder, int position) {
 
         Transaction transaction = transactions.get(position);
-        User user = userMap.get(transaction.getUsername());
+        User user = userMap.get(transaction.username);
         holder.bind(transaction,user);
     }
 

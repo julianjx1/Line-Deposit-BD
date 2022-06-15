@@ -47,12 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
         toggle.syncState();
 
-
-        if(Constant.user.getUsername().compareToIgnoreCase( "admin") == 0){
-            loadFragment(new AdminHomeFragment());
-        }else {
-            loadFragment(new HomeFragment());
+        switch (Constant.user.userType){
+            case user:
+                loadFragment(new HomeFragment());
+                break;
+            case admin:
+                loadFragment(new AdminHomeFragment());
+                break;
         }
+
         setTitle(R.string.home);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

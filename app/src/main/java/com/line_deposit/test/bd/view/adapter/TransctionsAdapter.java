@@ -37,14 +37,14 @@ public class TransctionsAdapter extends RecyclerView.Adapter<TransctionsAdapter.
     @Override
     public void onBindViewHolder(@NonNull TransctionsAdapter.ViewHolder holder, int position) {
         Transaction transaction = transactions.get(position);
-        holder.mobileNumber.setText(transaction.getMobileNumber());
-        holder.transactionId.setText(transaction.getTransactionId());
-        holder.amount.setText(Integer.toString(transaction.getAmount()));
-        holder.transactionType.setText(transaction.getTransactionType());
-        holder.date.setText(transaction.getDate());
-        holder.paymentType.setText(transaction.getPaymentType().toString());
-        holder.transactionProcess.setText(transaction.getTransactionProcess().toString());
-        switch (transaction.getTransactionProcess()){
+        holder.mobileNumber.setText(transaction.mobileNumber);
+        holder.transactionId.setText(transaction.transactionId);
+        holder.amount.setText(Integer.toString(transaction.amount));
+        holder.transactionType.setText(transaction.transactionType);
+        holder.date.setText(transaction.year);
+        holder.paymentType.setText(transaction.paymentType.toString());
+        holder.transactionProcess.setText(transaction.transactionProcess.toString());
+        switch (transaction.transactionProcess){
             case Rejected:
                 holder.transactionProcess.setTextColor(context.getColor(R.color.red));
                 break;
@@ -56,7 +56,7 @@ public class TransctionsAdapter extends RecyclerView.Adapter<TransctionsAdapter.
                 break;
         }
 
-        switch (transaction.getPaymentType()){
+        switch (transaction.paymentType){
             case Withdraw:
                 holder.paymentType.setTextColor(context.getColor(R.color.red));
                 break;

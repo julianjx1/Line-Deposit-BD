@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<FrameLayout
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-xmlns:app="http://schemas.android.com/apk/res-auto"
+
 android:background="@color/white"
 
 tools:context=".view.fragment.user.WithdrawFragment">
@@ -118,7 +119,7 @@ tools:context=".view.fragment.user.WithdrawFragment">
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_deposit_amount"
+        android:id="@+id/btn_withdraw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -134,3 +135,4 @@ tools:context=".view.fragment.user.WithdrawFragment">
 </LinearLayout>
 
 </FrameLayout>
+</layout>

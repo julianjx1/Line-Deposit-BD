@@ -75,9 +75,9 @@ public class ShowTransactionsFragment extends Fragment {
                 RecyclerView recyclerView = view.findViewById(R.id.transaction_list);
 
         ArrayList<Transaction> transactions = new ArrayList<>();
-        transactions.add(new Transaction("Xyz","+123", "123sdfsd", "Bkash", TransactionProcess.Completed, PaymentType.Deposit, 500, "2022/12/06" ));
-        transactions.add(new Transaction("xyz","+345", "345sdfsd", "Nagad", TransactionProcess.Processing, PaymentType.Withdraw, 1500 ,"2022/12/06"));
-        transactions.add(new Transaction("Xyz","+3465", "675sdfsd", "Upay", TransactionProcess.Rejected, PaymentType.Deposit, 2500 ,"2022/12/06"));
+//        transactions.add(new Transaction("Xyz","+123", "123sdfsd", "Bkash", TransactionProcess.Completed, PaymentType.Deposit, 500, "2022/12/06" ));
+//        transactions.add(new Transaction("xyz","+345", "345sdfsd", "Nagad", TransactionProcess.Processing, PaymentType.Withdraw, 1500 ,"2022/12/06"));
+//        transactions.add(new Transaction("Xyz","+3465", "675sdfsd", "Upay", TransactionProcess.Rejected, PaymentType.Deposit, 2500 ,"2022/12/06"));
 
         TransctionsAdapter adapter = new TransctionsAdapter(transactions, requireContext());
 
