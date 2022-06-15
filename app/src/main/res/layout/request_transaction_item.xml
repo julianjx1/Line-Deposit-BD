@@ -203,9 +203,10 @@
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="120sp"
                         android:layout_height="wrap_content"
-                        android:text="@string/accept"
-                        android:backgroundTint="@color/green"
                         android:layout_alignParentStart="true"
+                        android:backgroundTint="@color/green"
+                        android:text="@string/accept"
+                        android:id="@+id/accept"
                         />
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="120sp"
@@ -214,6 +215,8 @@
                         android:text="Reject"
                         android:backgroundTint="@color/red"
                         android:layout_alignParentEnd="true"
+
+                        android:id="@+id/reject"
                         />
 
                 </RelativeLayout>

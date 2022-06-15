@@ -56,6 +56,8 @@
         <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/transactions_item.xml" value="0.25" />
         <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/video_list_item.xml" value="0.1" />
         <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/menu/navigation_items.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_request_transaction.xml" value="0.15526849037487336" />
+        <entry key="app/src/main/res/layout/request_transaction_item.xml" value="0.5" />
       </map>
     </option>
   </component>

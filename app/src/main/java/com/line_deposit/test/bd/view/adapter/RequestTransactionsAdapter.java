@@ -2,6 +2,7 @@ package com.line_deposit.test.bd.view.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -24,10 +25,17 @@ public class RequestTransactionsAdapter extends RecyclerView.Adapter<RequestTran
     private Map<String, User> userMap;
     private Context context;
 
-    public RequestTransactionsAdapter(List<Transaction> transactions, Map<String, User> userMap, Context context) {
+    private RequestTransactionObserver requestTransactionObserver;
+    public RequestTransactionsAdapter(List<Transaction> transactions, Map<String, User> userMap, Context context, RequestTransactionObserver requestTransactionObserver) {
         this.transactions = transactions;
         this.userMap = userMap;
         this.context = context;
+        this.requestTransactionObserver = requestTransactionObserver;
+    }
+
+    public void updateAdapter(Transaction transaction){
+        transactions.remove(transaction);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -47,6 +55,12 @@ public class RequestTransactionsAdapter extends RecyclerView.Adapter<RequestTran
         Transaction transaction = transactions.get(position);
         User user = userMap.get(transaction.username);
         holder.bind(transaction,user);
+        holder.transactionsItemBinding.accept.setOnClickListener(view -> {
+         requestTransactionObserver.onAccept(transaction);
+        });
+        holder.transactionsItemBinding.reject.setOnClickListener(view -> {
+            requestTransactionObserver.onReject(transaction);
+        });
     }
 
     @Override
