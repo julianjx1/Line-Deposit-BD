@@ -30,6 +30,7 @@ public class AdminHomeFragment extends Fragment {
         MaterialButton depositRequestButton = view.findViewById(R.id.btn_deposit_request);
         MaterialButton showTransactionButton = view.findViewById(R.id.btn_show_transactions);
         MaterialButton changeTransactionNumberButton = view.findViewById(R.id.btn_change_transaction_number);
+        MaterialButton addNewUserButton = view.findViewById(R.id.btn_add_new_userr);
 
         Constant.network.userList();;
 
@@ -48,6 +49,7 @@ public class AdminHomeFragment extends Fragment {
             loadFragment(requestTransactionFragment);});
         showTransactionButton.setOnClickListener(v -> loadFragment(new ShowTransactionsFragment()));
         changeTransactionNumberButton.setOnClickListener(v -> loadFragment(new ChangeTransactionNumberFragment()));
+        addNewUserButton.setOnClickListener(v -> loadFragment(new AddNewUserFragment()));
         return  view;
     }
 

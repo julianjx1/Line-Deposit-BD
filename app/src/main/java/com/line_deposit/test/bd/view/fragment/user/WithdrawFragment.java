@@ -54,10 +54,7 @@ public class WithdrawFragment extends Fragment implements TransactionObserver {
             transaction.paymentType = PaymentType.Withdraw;
             transaction.transactionType = binding.depositAccountType.getText().toString();
             transaction.transactionProcess = TransactionProcess.Processing;
-            Calendar calendar = Calendar.getInstance();
-            transaction.year = String.valueOf(calendar.get(Calendar.YEAR));
-            transaction.month = String.valueOf(calendar.get(Calendar.MONTH)+1);
-            transaction.day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+            transaction.date = Constant.getCurrentTime();
             Constant.network.userTransaction(transaction);
         });
         return  binding.getRoot();

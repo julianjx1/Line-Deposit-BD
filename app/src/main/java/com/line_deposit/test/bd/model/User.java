@@ -3,12 +3,14 @@ package com.line_deposit.test.bd.model;
 public class User {
     public  String username;
     public  String password;
-    public   UserType userType;
+    public  UserType userType;
+    public  String mobile;
 
-    public User(String username, String password, UserType userType) {
+    public User(String username, String password, UserType userType, String mobile) {
         this.username = username;
         this.password = password;
         this.userType = userType;
+        this.mobile = mobile;
     }
 
     public User() {

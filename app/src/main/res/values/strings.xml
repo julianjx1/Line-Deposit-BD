@@ -48,4 +48,6 @@
     <string name="change_transaction_number">Change Transaction Number</string>
     <string name="reference_username_if_any">Reference username (if any)</string>
     <string name="logout">Logout</string>
+    <string name="add_new_user">Add New User</string>
+    <string name="add">Add</string>
 </resources>

@@ -8,8 +8,7 @@ import java.util.Date;
 public class Transaction {
 
     public String mobileNumber;
-    @Exclude
-    public Date date;
+
     public String username;
     public String transactionId;
     public String transactionType;
@@ -17,9 +16,7 @@ public class Transaction {
     public PaymentType paymentType;
     public Integer amount;
 
-    public String year;
-    public String month;
-    public String day;
+    public long date;
 
     public Transaction() {
     }

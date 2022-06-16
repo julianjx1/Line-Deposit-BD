@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:background="@color/white"
 
     tools:context=".view.fragment.admin.AdminHomeFragment">
@@ -45,7 +47,14 @@
             android:layout_width="300sp"
             android:layout_height="100sp"
             android:text="@string/change_transaction_number"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_new_userr"
+            android:layout_width="300sp"
+            android:layout_height="100sp"
+            android:text="@string/add_new_user"/>
 
     </LinearLayout>
 
 </FrameLayout>
+
+</layout>

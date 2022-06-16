@@ -32,6 +32,34 @@ public class Network {
     public TransactionObserver transactionObserver;
     public TransactionRequestObserver transactionRequestObserver;
 
+    public void userList(){
+        //  databaseReference.child("users").child(user.getUsername()).setValue(user);
+
+        databaseReference.child("users")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Map<String, User> userMap = new HashMap<>();
+                        for (DataSnapshot user : snapshot.getChildren()) {
+                            userMap.put(user.getKey(), user.getValue(User.class));
+                        }
+                        Constant.userMap = userMap;
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    public void addUser(User user){
+        databaseReference.child("users")
+                .child(user.username)
+                .setValue(user)
+                .addOnSuccessListener(unused -> transactionObserver.onTransactionUpdate(true, "Information saved successfully"));
+    }
+
     public void login(String username, String password){
       //  databaseReference.child("users").child(user.getUsername()).setValue(user);
 
@@ -91,17 +119,19 @@ public class Network {
                 });
     }
 
-    public void removeTransactionRequest(Transaction transaction){
-        //  databaseReference.child("users").child(user.getUsername()).setValue(user);\
-      //  transaction.username = Constant.user.username;
+    public void userTransactionRequest(PaymentType paymentType, String username){
+        //  databaseReference.child("users").child(user.getUsername()).setValue(user);
+
         databaseReference.child("transactions")
-                .child(transaction.paymentType.toString())
-                .child(transaction.username)
-                .child(transaction.paymentType.toString())
+                .child(paymentType.toString())
+                .child(username)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        snapshot.getRef().removeValue();
+                        ArrayList<Transaction> transactions = new ArrayList<>();
+                        if (snapshot.hasChildren())
+                        transactions.add(snapshot.getValue(Transaction.class));
+                        transactionRequestObserver.transactionRequstions(transactions);
                     }
 
                     @Override
@@ -110,15 +140,33 @@ public class Network {
                     }
                 });
     }
+
+    public void removeTransactionRequest(Transaction transaction){
+        //  databaseReference.child("users").child(user.getUsername()).setValue(user);\
+      //  transaction.username = Constant.user.username;
+        databaseReference.child("transactions")
+                .child(transaction.paymentType.toString())
+                .child(transaction.username)
+                .removeValue();
+
+    }
     public void updateTransactionRequest(Transaction transaction){
         //  databaseReference.child("users").child(user.getUsername()).setValue(user);\
         removeTransactionRequest(transaction);
         databaseReference.child("transactions")
-                .child("list")
+                .child("userList")
                 .child(transaction.username)
-                .child(transaction.year)
-                .child(transaction.month)
-                .child(transaction.day)
+                .child(String.valueOf(transaction.date))
+                .setValue(transaction)
+                .addOnSuccessListener(unused -> {
+                    transactionObserver.onTransactionUpdate(true, "Transaction process has completed successfully");
+                })
+                .addOnFailureListener(e -> {
+                    transactionObserver.onTransactionUpdate(false, "Please check your internet connection");
+                });
+        databaseReference.child("transactions")
+                .child("adminList")
+                .child(String.valueOf(transaction.date))
                 .setValue(transaction)
                 .addOnSuccessListener(unused -> {
                     transactionObserver.onTransactionUpdate(true, "Transaction process has completed successfully");
@@ -127,18 +175,22 @@ public class Network {
                     transactionObserver.onTransactionUpdate(false, "Please check your internet connection");
                 });
     }
-    public void userList(){
+
+
+
+    public void showAdminTransaction(){
         //  databaseReference.child("users").child(user.getUsername()).setValue(user);
 
-        databaseReference.child("users")
+        databaseReference.child("transactions")
+                .child("adminList")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Map<String, User> userMap = new HashMap<>();
+                        ArrayList<Transaction> transactions = new ArrayList<>();
                         for (DataSnapshot user : snapshot.getChildren()) {
-                            userMap.put(user.getKey(), user.getValue(User.class));
+                            transactions.add(user.getValue(Transaction.class));
                         }
-                        Constant.userMap = userMap;
+                        transactionRequestObserver.transactionRequstions(transactions);
                     }
 
                     @Override
@@ -148,6 +200,28 @@ public class Network {
                 });
     }
 
+    public void showUserTransaction(){
+        //  databaseReference.child("users").child(user.getUsername()).setValue(user);
+
+        databaseReference.child("transactions")
+                .child("userList")
+                .child(Constant.user.username)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ArrayList<Transaction> transactions = new ArrayList<>();
+                        for (DataSnapshot user : snapshot.getChildren()) {
+                            transactions.add(user.getValue(Transaction.class));
+                        }
+                        transactionRequestObserver.transactionRequstions(transactions);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
 
 
 

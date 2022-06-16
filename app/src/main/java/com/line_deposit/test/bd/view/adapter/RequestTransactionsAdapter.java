@@ -15,6 +15,7 @@ import com.line_deposit.test.bd.R;
 import com.line_deposit.test.bd.databinding.RequestTransactionItemBinding;
 import com.line_deposit.test.bd.model.Transaction;
 import com.line_deposit.test.bd.model.User;
+import com.line_deposit.test.bd.utilites.Constant;
 
 import java.util.List;
 import java.util.Map;
@@ -80,6 +81,7 @@ public class RequestTransactionsAdapter extends RecyclerView.Adapter<RequestTran
         public void bind(Transaction transaction, User user) {
             transactionsItemBinding.setVariable(BR.transaction, transaction);
             transactionsItemBinding.setVariable(BR.user, user);
+            transactionsItemBinding.setDate(Constant.getDate(transaction.date));
             transactionsItemBinding.executePendingBindings();
         }
     }

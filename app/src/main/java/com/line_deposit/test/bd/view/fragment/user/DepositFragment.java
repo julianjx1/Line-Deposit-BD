@@ -1,10 +1,12 @@
 package com.line_deposit.test.bd.view.fragment.user;
 
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,9 @@ import com.line_deposit.test.bd.model.Transaction;
 import com.line_deposit.test.bd.model.TransactionProcess;
 import com.line_deposit.test.bd.utilites.Constant;
 
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -56,11 +60,8 @@ public class DepositFragment extends Fragment implements TransactionObserver{
             transaction.transactionId = transactionId;
             transaction.paymentType = PaymentType.Deposit;
             transaction.transactionType = binding.depositAccountType.getText().toString();
-            transaction.transactionProcess = TransactionProcess.Processing;
-            Calendar calendar = Calendar.getInstance();
-            transaction.year = String.valueOf(calendar.get(Calendar.YEAR));
-            transaction.month = String.valueOf(calendar.get(Calendar.MONTH)+1);
-            transaction.day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+            transaction.transactionProcess = TransactionProcess.Processing;;
+            transaction.date = Constant.getCurrentTime();
             Constant.network.userTransaction(transaction);
         });
 

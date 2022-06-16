@@ -11,19 +11,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.line_deposit.test.bd.R;
 import com.line_deposit.test.bd.model.Transaction;
+import com.line_deposit.test.bd.utilites.Constant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransctionsAdapter extends RecyclerView.Adapter<TransctionsAdapter.ViewHolder> {
 
 
-    private List<Transaction> transactions;
+    private ArrayList<Transaction> transactions;
     private Context context;
 
-    public TransctionsAdapter(List<Transaction> transactions, Context context) {
+    public TransctionsAdapter(ArrayList<Transaction> transactions, Context context) {
         this.transactions = transactions;
         this.context = context;
     }
+
+   public void updateList(ArrayList<Transaction> list){
+        transactions.addAll(list);
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
@@ -41,7 +49,7 @@ public class TransctionsAdapter extends RecyclerView.Adapter<TransctionsAdapter.
         holder.transactionId.setText(transaction.transactionId);
         holder.amount.setText(Integer.toString(transaction.amount));
         holder.transactionType.setText(transaction.transactionType);
-        holder.date.setText(transaction.year);
+        holder.date.setText(Constant.getDate(transaction.date));
         holder.paymentType.setText(transaction.paymentType.toString());
         holder.transactionProcess.setText(transaction.transactionProcess.toString());
         switch (transaction.transactionProcess){
