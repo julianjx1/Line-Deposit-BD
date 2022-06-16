@@ -45,13 +45,37 @@
             app:endIconTint="@color/green"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
             <AutoCompleteTextView
-                android:id="@+id/account_type"
+                android:id="@+id/transaction_process"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/label_process_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="20dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_process_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/transaction_process_name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/label_mobile_number_for_deposit"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -67,7 +91,7 @@
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_mobile_number_deposit"
+                android:id="@+id/et_mobile_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/mobile_number"
@@ -79,7 +103,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_deposit_amount"
+            android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

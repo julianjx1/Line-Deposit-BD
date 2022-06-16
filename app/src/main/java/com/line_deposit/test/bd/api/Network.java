@@ -157,13 +157,8 @@ public class Network {
                 .child("userList")
                 .child(transaction.username)
                 .child(String.valueOf(transaction.date))
-                .setValue(transaction)
-                .addOnSuccessListener(unused -> {
-                    transactionObserver.onTransactionUpdate(true, "Transaction process has completed successfully");
-                })
-                .addOnFailureListener(e -> {
-                    transactionObserver.onTransactionUpdate(false, "Please check your internet connection");
-                });
+                .setValue(transaction);
+
         databaseReference.child("transactions")
                 .child("adminList")
                 .child(String.valueOf(transaction.date))
@@ -223,6 +218,31 @@ public class Network {
                 });
     }
 
+    public void addTransactionProcess(String processName, String mobileNumber){
+        databaseReference.child("transactions_process")
+                .child(processName)
+                .setValue(mobileNumber)
+                .addOnSuccessListener(unused ->  transactionObserver.onTransactionUpdate(true, "Information has saved successfully"))
+                .addOnFailureListener(e -> transactionObserver.onTransactionUpdate(false, "Please check your internet connection"));
+    }
 
+    public void getTransactionProcessList(){
+        databaseReference.child("transactions_process")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       Map<String,String> transactionMap = new HashMap<>();
+                       for(DataSnapshot process: snapshot.getChildren()){
+                           transactionMap.put(process.getKey(), process.getValue(String.class));
+                       }
+                       Constant.transactionProcessMap = transactionMap;
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
 
 }

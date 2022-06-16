@@ -25,6 +25,7 @@ import com.line_deposit.test.bd.view.adapter.RequestTransactionsAdapter;
 import com.line_deposit.test.bd.view.fragment.user.TransactionObserver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,6 +53,7 @@ public class RequestTransactionFragment extends Fragment implements TransactionO
 
     @Override
     public void transactionRequstions(ArrayList<Transaction> transactions) {
+        Collections.reverse(transactions);
         adapter = new RequestTransactionsAdapter(transactions, Constant.userMap, requireContext(), this);
         binding.requestTransactionList.setHasFixedSize(true);
         binding.requestTransactionList.setLayoutManager(new LinearLayoutManager(requireContext()));

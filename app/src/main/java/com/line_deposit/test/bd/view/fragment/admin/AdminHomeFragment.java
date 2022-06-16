@@ -32,8 +32,8 @@ public class AdminHomeFragment extends Fragment {
         MaterialButton changeTransactionNumberButton = view.findViewById(R.id.btn_change_transaction_number);
         MaterialButton addNewUserButton = view.findViewById(R.id.btn_add_new_userr);
 
-        Constant.network.userList();;
-
+        Constant.network.userList();
+        Constant.network.getTransactionProcessList();
 
         withdrawRequestButton.setOnClickListener(v -> {
             RequestTransactionFragment requestTransactionFragment = new RequestTransactionFragment();
@@ -56,7 +56,7 @@ public class AdminHomeFragment extends Fragment {
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.add(R.id.container, fragment).addToBackStack("back");
+        fragmentTransaction.replace(R.id.container, fragment).addToBackStack("back");
         fragmentTransaction.commit();
     }
 }

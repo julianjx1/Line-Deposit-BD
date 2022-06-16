@@ -22,6 +22,7 @@ import com.line_deposit.test.bd.view.adapter.TransctionsAdapter;
 import com.line_deposit.test.bd.view.fragment.admin.TransactionRequestObserver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ShowTransactionsFragment extends Fragment implements TransactionRequestObserver {
 
@@ -54,6 +55,7 @@ public class ShowTransactionsFragment extends Fragment implements TransactionReq
 
     @Override
     public void transactionRequstions(ArrayList<Transaction> transactions) {
+        Collections.reverse(transactions);
         adapter.updateList(transactions);
     }
 }

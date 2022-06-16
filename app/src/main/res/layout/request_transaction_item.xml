@@ -194,6 +194,7 @@
                         android:textSize="15sp"/>
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/transaction_id"
                         android:layout_width="200sp"
                         android:layout_height="wrap_content"
                         android:text="@={transaction.transactionId}"

@@ -15,6 +15,7 @@ public class Constant {
     public  static User user;
     public  static final Network network = new Network();
     public static Map<String, User> userMap = new HashMap<>();
+    public static Map<String, String> transactionProcessMap = new HashMap<>();
 
     public static String getDate(long date){
         return new SimpleDateFormat("dd-MM-yyyy").format(new Date(date));

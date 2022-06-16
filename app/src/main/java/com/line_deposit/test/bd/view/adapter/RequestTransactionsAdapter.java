@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.line_deposit.test.bd.BR;
 import com.line_deposit.test.bd.R;
 import com.line_deposit.test.bd.databinding.RequestTransactionItemBinding;
+import com.line_deposit.test.bd.model.PaymentType;
 import com.line_deposit.test.bd.model.Transaction;
 import com.line_deposit.test.bd.model.User;
 import com.line_deposit.test.bd.utilites.Constant;
@@ -56,7 +58,16 @@ public class RequestTransactionsAdapter extends RecyclerView.Adapter<RequestTran
         Transaction transaction = transactions.get(position);
         User user = userMap.get(transaction.username);
         holder.bind(transaction,user);
+        holder.transactionsItemBinding.paymentType.setTextColor((transaction.paymentType == PaymentType.Withdraw)? context.getResources().getColor(R.color.red) : context.getResources().getColor(R.color.green));
         holder.transactionsItemBinding.accept.setOnClickListener(view -> {
+            if(transaction.paymentType == PaymentType.Withdraw){
+                String transactionId = holder.transactionsItemBinding.transactionId.getText().toString();
+                if(transactionId.isEmpty()){
+                    Toast.makeText(context, "Transaction Id must be given", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                transaction.transactionId = transactionId;
+            }
          requestTransactionObserver.onAccept(transaction);
         });
         holder.transactionsItemBinding.reject.setOnClickListener(view -> {

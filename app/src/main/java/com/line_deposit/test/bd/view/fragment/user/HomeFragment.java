@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.button.MaterialButton;
 import com.line_deposit.test.bd.R;
+import com.line_deposit.test.bd.utilites.Constant;
 
 
 public class HomeFragment extends Fragment {
@@ -27,7 +28,7 @@ public class HomeFragment extends Fragment {
         MaterialButton depositButton = view.findViewById(R.id.btn_deposit);
         MaterialButton showTransactionButton = view.findViewById(R.id.btn_show_transactions);
 
-
+        Constant.network.getTransactionProcessList();
 
 
         withdrawButton.setOnClickListener(v -> loadFragment(new WithdrawFragment()));

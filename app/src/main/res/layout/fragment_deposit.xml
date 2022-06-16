@@ -47,6 +47,7 @@
 
 
         <TextView
+            android:id="@+id/show_number"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,6 +85,7 @@
                 android:hint="@string/mobile_number"
                 android:inputType="text"
                 android:maxLines="1"
+                android:enabled="false"
                 android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
