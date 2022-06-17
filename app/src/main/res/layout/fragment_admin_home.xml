@@ -24,7 +24,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_withdraw_request"
             android:layout_width="300sp"
-            android:layout_height="100sp"
+            android:layout_height="80sp"
             android:text="@string/withdraw_request"
             android:backgroundTint="@color/red"
             />
@@ -32,7 +32,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_deposit_request"
             android:layout_width="300sp"
-            android:layout_height="100sp"
+            android:layout_height="80sp"
             android:text="@string/deposit_request"
             app:backgroundTint="@color/green"
             />
@@ -40,18 +40,23 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_show_transactions"
             android:layout_width="300sp"
-            android:layout_height="100sp"
+            android:layout_height="80sp"
             android:text="@string/show_transactions"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_change_transaction_number"
             android:layout_width="300sp"
-            android:layout_height="100sp"
+            android:layout_height="80sp"
             android:text="@string/change_transaction_number"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_new_userr"
             android:layout_width="300sp"
-            android:layout_height="100sp"
+            android:layout_height="80sp"
             android:text="@string/add_new_user"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_affiliate"
+            android:layout_width="300sp"
+            android:layout_height="80sp"
+            android:text="@string/affiliate"/>
 
     </LinearLayout>
 

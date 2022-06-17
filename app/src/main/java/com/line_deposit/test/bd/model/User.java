@@ -1,11 +1,16 @@
 package com.line_deposit.test.bd.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class User {
     public  String username;
     public  String password;
     public  UserType userType;
     public  String mobile;
-
+    public String affiliateUser;
+    public int balance = 0;
     public User(String username, String password, UserType userType, String mobile) {
         this.username = username;
         this.password = password;

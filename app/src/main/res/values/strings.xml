@@ -51,4 +51,9 @@
     <string name="add_new_user">Add New User</string>
     <string name="add">Add</string>
     <string name="transaction_process_name">Transaction Process Name</string>
+    <string name="affiliate">Affiliate</string>
+    <string name="add_new_affiliate">Add New Affiliate</string>
+    <string name="add_affiliate_s_user">Add Affiliate\'s User</string>
+    <string name="show_affiliate_s_members">Show Affiliate\'s Members</string>
+    <string name="affiliate_username">Affiliate Username</string>
 </resources>

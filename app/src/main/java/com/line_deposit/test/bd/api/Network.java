@@ -14,15 +14,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.line_deposit.test.bd.model.PaymentType;
 import com.line_deposit.test.bd.model.Transaction;
+import com.line_deposit.test.bd.model.TransactionProcess;
 import com.line_deposit.test.bd.model.User;
 import com.line_deposit.test.bd.utilites.Constant;
 import com.line_deposit.test.bd.view.Authentication.LoginObserver;
 import com.line_deposit.test.bd.view.fragment.admin.TransactionRequestObserver;
+import com.line_deposit.test.bd.view.fragment.admin.affiliate.MembersObserver;
 import com.line_deposit.test.bd.view.fragment.user.TransactionObserver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Network {
     private  FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -31,10 +35,9 @@ public class Network {
     public LoginObserver loginObserver;
     public TransactionObserver transactionObserver;
     public TransactionRequestObserver transactionRequestObserver;
+    public MembersObserver membersObserver;
 
     public void userList(){
-        //  databaseReference.child("users").child(user.getUsername()).setValue(user);
-
         databaseReference.child("users")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -52,12 +55,46 @@ public class Network {
                     }
                 });
     }
+    public void affiliateMembersList(User affiliate, String purpose){
+        databaseReference.child("affiliate")
+                .child(affiliate.username)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Map<String, String> users = new HashMap<>();
+                        for (DataSnapshot user : snapshot.getChildren()) {
+                            users.put(user.getKey(),user.getValue(String.class));
+                        }
+                        membersObserver.membersList(users, purpose);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
 
     public void addUser(User user){
         databaseReference.child("users")
                 .child(user.username)
                 .setValue(user)
-                .addOnSuccessListener(unused -> transactionObserver.onTransactionUpdate(true, "Information saved successfully"));
+                .addOnSuccessListener(unused ->{
+                    userList();
+                    transactionObserver.onTransactionUpdate(true, "Information saved successfully");
+                } );
+    }
+    public void addAffiliateMember(User user, User affiliate){
+        databaseReference.child("affiliate")
+                .child(affiliate.username)
+                .child(String.valueOf(Constant.getCurrentTime()))
+                .setValue(user.username);
+    }
+    public void removeAffiliateMember(String affiliate, String time){
+        databaseReference.child("affiliate")
+                .child(affiliate)
+                .child(time)
+                .removeValue();
     }
 
     public void login(String username, String password){
@@ -70,7 +107,8 @@ public class Network {
                 if(user == null || user.password.compareTo(password) != 0 ){
                     loginObserver.authenticationStatus(false, "Incorrect username or password", user);
                 }else{
-                    Constant.user = user;
+
+                    Constant.saveUserInformation(user);
                     loginObserver.authenticationStatus(true, "Login successfully", user);
                 }
 
@@ -119,6 +157,9 @@ public class Network {
                 });
     }
 
+
+
+
     public void userTransactionRequest(PaymentType paymentType, String username){
         //  databaseReference.child("users").child(user.getUsername()).setValue(user);
 
@@ -150,6 +191,8 @@ public class Network {
                 .removeValue();
 
     }
+
+
     public void updateTransactionRequest(Transaction transaction){
         //  databaseReference.child("users").child(user.getUsername()).setValue(user);\
         removeTransactionRequest(transaction);
@@ -158,6 +201,27 @@ public class Network {
                 .child(transaction.username)
                 .child(String.valueOf(transaction.date))
                 .setValue(transaction);
+        String affiliateUser = Constant.userMap.get(transaction.username).affiliateUser;
+        if(affiliateUser != null && !affiliateUser.isEmpty() && transaction.transactionProcess == TransactionProcess.Completed){
+            User user = Constant.userMap.get(affiliateUser);
+            if(transaction.paymentType == PaymentType.Deposit){
+                assert user != null;
+                user.balance += transaction.amount * 0.1;
+            }else{
+                assert user != null;
+                user.balance -= transaction.amount * 0.1;
+                if (user.balance < 0)
+                    user.balance = 0;
+            }
+            databaseReference.child("users")
+                    .child(user.username)
+                    .setValue(user);
+            Constant.userMap.put(user.username, user);
+            databaseReference.child("affiliation_transactions")
+                    .child(affiliateUser)
+                    .child(String.valueOf(transaction.date))
+                    .setValue(transaction);
+        }
 
         databaseReference.child("transactions")
                 .child("adminList")

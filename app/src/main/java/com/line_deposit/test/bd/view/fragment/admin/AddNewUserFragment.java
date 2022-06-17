@@ -29,7 +29,8 @@ public class AddNewUserFragment extends Fragment implements TransactionObserver 
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_new_user, container, false);
         Constant.network.transactionObserver = this;
-
+        if(isAffiliate())
+            binding.etUsername.setHint("Affiliate username");
         binding.etUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -71,14 +72,25 @@ public class AddNewUserFragment extends Fragment implements TransactionObserver 
                 Toast.makeText(requireContext(), "mobile number must be given", Toast.LENGTH_SHORT).show();
                 return;
             }
-            User user = new User(username, password, UserType.user, mobile);
+            User user = new User(username, password, isAffiliate() ? UserType.affiliate : UserType.user, mobile);
             Constant.network.addUser(user);
         });
         return binding.getRoot();
     }
 
+    private Boolean isAffiliate(){
+        if(getArguments()!= null){
+            if(getArguments().getString("userType").compareToIgnoreCase(UserType.affiliate.toString()) == 0)
+                return true;
+        }
+        return false;
+    }
+
     @Override
     public void onTransactionUpdate(Boolean success, String message) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+        binding.etUsername.setText("");
+        binding.etPassword.setText("");
+        binding.etMobile.setText("");
     }
 }

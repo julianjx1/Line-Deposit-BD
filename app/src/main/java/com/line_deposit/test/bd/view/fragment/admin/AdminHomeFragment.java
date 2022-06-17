@@ -14,6 +14,7 @@ import com.google.android.material.button.MaterialButton;
 import com.line_deposit.test.bd.R;
 import com.line_deposit.test.bd.model.PaymentType;
 import com.line_deposit.test.bd.utilites.Constant;
+import com.line_deposit.test.bd.view.fragment.admin.affiliate.AffiliateFragment;
 import com.line_deposit.test.bd.view.fragment.user.ShowTransactionsFragment;
 
 
@@ -31,6 +32,7 @@ public class AdminHomeFragment extends Fragment {
         MaterialButton showTransactionButton = view.findViewById(R.id.btn_show_transactions);
         MaterialButton changeTransactionNumberButton = view.findViewById(R.id.btn_change_transaction_number);
         MaterialButton addNewUserButton = view.findViewById(R.id.btn_add_new_userr);
+        MaterialButton affiliaterButton = view.findViewById(R.id.btn_affiliate);
 
         Constant.network.userList();
         Constant.network.getTransactionProcessList();
@@ -50,6 +52,7 @@ public class AdminHomeFragment extends Fragment {
         showTransactionButton.setOnClickListener(v -> loadFragment(new ShowTransactionsFragment()));
         changeTransactionNumberButton.setOnClickListener(v -> loadFragment(new ChangeTransactionNumberFragment()));
         addNewUserButton.setOnClickListener(v -> loadFragment(new AddNewUserFragment()));
+        affiliaterButton.setOnClickListener(v -> loadFragment(new AffiliateFragment()));
         return  view;
     }
 

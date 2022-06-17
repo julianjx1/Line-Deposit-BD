@@ -57,26 +57,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setTitle(R.string.home);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        navigationView.setNavigationItemSelectedListener(item -> {
 
-                int id = item.getItemId();
-                setTitle(item.getTitle());
-                switch (id){
+            int id = item.getItemId();
+            setTitle(item.getTitle());
+            switch (id){
 
-                    case R.id.logout:
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                        finish();
-                        break;
+                case R.id.logout:
+                    Constant.removeUserInformation();
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                    break;
 
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + id);
-                }
-
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + id);
             }
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
         });
     }
 
