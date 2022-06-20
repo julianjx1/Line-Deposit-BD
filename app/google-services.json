@@ -1,10 +1,40 @@
 {
   "project_info": {
     "project_number": "801768795517",
+    "firebase_url": "https://line-deposit-bd-default-rtdb.firebaseio.com",
     "project_id": "line-deposit-bd",
     "storage_bucket": "line-deposit-bd.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801768795517:android:2fac7e8f294a120660f014",
+        "android_client_info": {
+          "package_name": "com.line_deposit.bd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801768795517-eldbohsuf9k7dsm285f1fcvkhf9trqvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdHTipIVp-_8dDG28pRKWfh51Fx9iOwvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801768795517-eldbohsuf9k7dsm285f1fcvkhf9trqvu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:801768795517:android:bc747055525bc22860f014",

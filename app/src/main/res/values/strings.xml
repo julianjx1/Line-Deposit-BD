@@ -56,4 +56,10 @@
     <string name="add_affiliate_s_user">Add Affiliate\'s User</string>
     <string name="show_affiliate_s_members">Show Affiliate\'s Members</string>
     <string name="affiliate_username">Affiliate Username</string>
+    <string name="please_send_money_on">Please send money on </string>
+    <string name="minimum_transaction_limit">Minimum Transaction Limit</string>
+    <string name="change_transaction_limit">Change Transaction Limit</string>
+    <string name="contact_us">Contact us</string>
+    <string name="please_contact_on">Please contact on</string>
+    <string name="change_phone_number">Change Phone Number</string>
 </resources>

@@ -45,22 +45,35 @@
                android:inputType="none"/>
        </com.google.android.material.textfield.TextInputLayout>
 
-
-        <TextView
-            android:id="@+id/show_number"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
+            android:id="@+id/mobile_number_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="20dp"
-            android:text="Please send money on 880 "
-            app:boxCornerRadiusBottomEnd="10dp"
-            app:boxCornerRadiusBottomStart="10dp"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            android:textAlignment="center"
-            app:hintEnabled="false"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            >
+            <TextView
+                android:id="@+id/show_number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/please_send_money_on"
+                android:textAlignment="center"
+                app:hintEnabled="false"/>
+            <TextView
+                android:id="@+id/number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textIsSelectable="true"
+                android:textAlignment="center"
+                app:hintEnabled="false"/>
+
+
+        </LinearLayout>
+
 
 
 
@@ -83,9 +96,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/mobile_number"
-                android:inputType="text"
+                android:inputType="phone"
                 android:maxLines="1"
-                android:enabled="false"
                 android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>

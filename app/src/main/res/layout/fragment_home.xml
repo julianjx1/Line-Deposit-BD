@@ -40,6 +40,11 @@
             android:layout_width="250sp"
             android:layout_height="100sp"
             android:text="@string/show_transactions"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_contact_us"
+            android:layout_width="250sp"
+            android:layout_height="100sp"
+            android:text="@string/contact_us"/>
 
     </LinearLayout>
 
