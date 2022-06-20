@@ -42,6 +42,33 @@
         <entry key="..\:/Users/mahir/AndroidStudioProjects/Line Deposit Bd/app/src/main/res/layout/fragment_submit_youtube_channel.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/mahir/AndroidStudioProjects/Line Deposit Bd/app/src/main/res/layout/fragment_withdraw.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/mahir/AndroidStudioProjects/Line Deposit Bd/app/src/main/res/layout/transactio_item.xml" value="0.15" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/activity_login.xml" value="0.30978260869565216" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/app_bar_main.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/container_main.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/drop_down_item.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_add_affiliate_member.xml" value="0.20742753623188406" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_add_new_affiliate.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_add_new_user.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_admin_home.xml" value="0.22" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_affiliate.xml" value="0.1" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_change_mobile_number.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_change_transaction_number.xml" value="0.22" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_contact_us.xml" value="0.2866847826086957" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_deposit.xml" value="0.2884963768115942" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_home.xml" value="0.2884963768115942" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_request_transaction.xml" value="0.1" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_show_transactions.xml" value="0.1" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_transaction_limit.xml" value="0.2866847826086957" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/fragment_withdraw.xml" value="0.25" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/header_lay.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/request_transaction_item.xml" value="0.24175824175824176" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/transactio_item.xml" value="0.1" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/transactions_item.xml" value="0.25" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/layout/video_list_item.xml" value="0.1" />
+        <entry key="..\:/Users/mahir/AndroidStudioProjects/Line-Deposit-BD/app/src/main/res/menu/navigation_items.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_request_transaction.xml" value="0.15526849037487336" />
+        <entry key="app/src/main/res/layout/request_transaction_item.xml" value="0.5" />
       </map>
     </option>
   </component>

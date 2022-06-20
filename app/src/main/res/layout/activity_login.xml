@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/username"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:textSize="14sp" />
 
@@ -97,7 +97,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_sign_in"
+                android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

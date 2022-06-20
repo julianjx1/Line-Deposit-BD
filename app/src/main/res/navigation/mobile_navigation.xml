@@ -7,18 +7,10 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.line_deposit.bd.view.fragment.HomeFragment"
+        android:name="com.line_deposit.bd.view.fragment.user.HomeFragment"
         android:label=""
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/to_navigation_video"
-            app:destination="@id/navigation_video" />
 
     </fragment>
-    <fragment
-        android:id="@+id/navigation_video"
-        android:name="com.line_deposit.bd.view.fragment.VideoFragment"
-        android:label=""
-        tools:layout="@layout/fragment_video" />
 
 </navigation>

@@ -21,6 +21,7 @@
     android:fitsSystemWindows="true"
     android:id="@+id/navigationView"
     app:menu="@menu/navigation_items"
+    app:headerLayout="@layout/header_lay"
     />
 
 

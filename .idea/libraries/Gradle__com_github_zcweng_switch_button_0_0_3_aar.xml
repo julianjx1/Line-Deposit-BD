@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.zcweng:switch-button:0.0.3@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/fd06c330c41b22ffda0b257092c957cb/transformed/jetified-switch-button-0.0.3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fd06c330c41b22ffda0b257092c957cb/transformed/jetified-switch-button-0.0.3/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fd06c330c41b22ffda0b257092c957cb/transformed/jetified-switch-button-0.0.3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f007c23fec844065ab652c4b09321f0b/transformed/jetified-switch-button-0.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f007c23fec844065ab652c4b09321f0b/transformed/jetified-switch-button-0.0.3/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f007c23fec844065ab652c4b09321f0b/transformed/jetified-switch-button-0.0.3/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.zcweng/switch-button/0.0.3/be654fb3fe0283bd3d7ca559b3a8470a6e7b5459/switch-button-0.0.3-javadoc.jar!/" />

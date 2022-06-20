@@ -1,6 +1,5 @@
 package com.line_deposit.bd.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,17 +9,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.line_deposit.bd.R;
-import com.line_deposit.bd.view.fragment.CreateAccountFragment;
-import com.line_deposit.bd.view.fragment.HomeFragment;
-import com.line_deposit.bd.view.fragment.IncomeFragment;
-import com.line_deposit.bd.view.fragment.ReferalLinkFragment;
-import com.line_deposit.bd.view.fragment.SubmitYoutubeChannelFragment;
+import com.line_deposit.bd.utilites.Constant;
+import com.line_deposit.bd.view.Authentication.LoginActivity;
+import com.line_deposit.bd.view.fragment.admin.AdminHomeFragment;
+import com.line_deposit.bd.view.fragment.user.HomeFragment;
+import com.line_deposit.bd.view.fragment.user.ShowTransactionsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,47 +39,62 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
         toolbar = findViewById(R.id.toolbar);
-
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.username);
+        TextView navBalance = (TextView) headerView.findViewById(R.id.balance);
+        navUsername.setText(Constant.user.username);
+        navBalance.setText(String.valueOf(Constant.user.balance));
         setSupportActionBar(toolbar);
 
-      //  ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
 
-      //  drawerLayout.addDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle);
 
-   //     toggle.syncState();
-        loadFragment(new HomeFragment());
-        setTitle(R.string.home);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        toggle.syncState();
 
-                int id = item.getItemId();
-                setTitle(item.getTitle());
-                switch (id){
-
-                    case R.id.home:
-                        loadFragment(new HomeFragment());
-                        break;
-                    case R.id.create_account:
-                        loadFragment(new CreateAccountFragment());
-
-                        break;
-                    case R.id.submit_youtube_video:
-                        loadFragment(new SubmitYoutubeChannelFragment());
-                        break;
-                    case R.id.income:
-                        loadFragment(new IncomeFragment());
-                        break;
-                    case R.id.referal_link:
-                        loadFragment(new ReferalLinkFragment());
-                        break;
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + id);
-                }
-
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
+        switch (Constant.user.userType){
+            case affiliate:
+            case user:
+                loadFragment(new HomeFragment());
+                break;
+            case admin:
+                loadFragment(new AdminHomeFragment());
+                break;
+        }
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            if(extras.containsKey("PaymentType"))
+            {
+//                setContentView(R.layout.viewmain);
+//                // extract the extra-data in the Notification
+//                String msg = extras.getString("NotificationMessage");
+//                txtView = (TextView) findViewById(R.id.txtMessage);
+//                txtView.setText(msg);
             }
+        }
+        if(getIntent().hasExtra("PaymentType")) {
+            loadFragment(new ShowTransactionsFragment());
+        }
+
+        setTitle(R.string.home);
+        navigationView.setNavigationItemSelectedListener(item -> {
+
+            int id = item.getItemId();
+            setTitle(item.getTitle());
+            switch (id){
+
+                case R.id.logout:
+                    Constant.removeUserInformation();
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                    break;
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + id);
+            }
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
         });
     }
 
