@@ -67,6 +67,11 @@
             android:layout_width="300sp"
             android:layout_height="70sp"
             android:text="@string/affiliate"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_advertise"
+            android:layout_width="300sp"
+            android:layout_height="70sp"
+            android:text="@string/advertisement"/>
 
     </LinearLayout>
 

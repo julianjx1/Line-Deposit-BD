@@ -29,6 +29,7 @@ import java.util.Objects;
 public class DepositFragment extends Fragment implements TransactionObserver, TransactionRequestObserver, TransactionLimitObserver {
     FragmentDepositBinding binding;
     int limit = -1 ;
+    private String transactionNumber;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,25 +45,17 @@ public class DepositFragment extends Fragment implements TransactionObserver, Tr
         ArrayList<String> type = new ArrayList<>(Constant.transactionProcessMap.keySet());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), R.layout.drop_down_item,type);
         binding.depositAccountType.setAdapter(adapter);
-        binding.etMobileNumberDeposit.setText(Constant.user.mobile);
-        binding.mobileNumberLayout.setVisibility(View.GONE);
         binding.depositAccountType.setOnItemClickListener((adapterView, view, i, l) -> {
-            binding.mobileNumberLayout.setVisibility(View.VISIBLE);
-            String processName = binding.depositAccountType.getText().toString();
-            String number = Constant.transactionProcessMap.get(processName);
 
-            binding.number.setText(number);
+            String processName = binding.depositAccountType.getText().toString();
+            transactionNumber = Constant.transactionProcessMap.get(processName);
+            binding.number.setText(transactionNumber);
         });
         binding.btnDepositAmount.setOnClickListener(v -> {
-            String mobileNumber = Objects.requireNonNull(binding.etMobileNumberDeposit.getText()).toString();
             String amountText = Objects.requireNonNull(binding.etDepositAmount.getText()).toString();
             String transactionId = Objects.requireNonNull(binding.etTransactionId.getText()).toString();
             int amount = 0;
 
-            if(mobileNumber.isEmpty()){
-                Toast.makeText(requireContext(), "Mobile number must be given "+ limit, Toast.LENGTH_SHORT).show();
-                return;
-            }
             try {
                 amount = Integer.parseInt(amountText);
             }catch (Exception ignored){
@@ -77,10 +70,10 @@ public class DepositFragment extends Fragment implements TransactionObserver, Tr
                 return;
             }
             Transaction transaction = new Transaction();
-            transaction.mobileNumber = mobileNumber;
             transaction.amount = amount;
             transaction.transactionId = transactionId;
             transaction.paymentType = PaymentType.Deposit;
+            transaction.transactionNumber = transactionNumber;
             transaction.transactionType = binding.depositAccountType.getText().toString();
             transaction.transactionProcess = TransactionProcess.Processing;
             Constant.network.transactionRequestObserver  = null;
@@ -100,7 +93,6 @@ public class DepositFragment extends Fragment implements TransactionObserver, Tr
         binding.etDepositAmount.setText("");
         binding.depositAccountType.setText("");
         binding.etTransactionId.setText("");
-        binding.mobileNumberLayout.setVisibility(View.GONE);
         binding.btnDepositAmount.setEnabled(false);
     }
 

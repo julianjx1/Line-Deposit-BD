@@ -32,8 +32,12 @@ public class AddNewUserFragment extends Fragment implements TransactionObserver 
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_new_user, container, false);
         Constant.network.transactionObserver = this;
+        binding.labelAffiliatePercent.setVisibility(View.GONE);
         if(isAffiliate())
+        {
             binding.etUsername.setHint("Affiliate username");
+            binding.labelAffiliatePercent.setVisibility(View.VISIBLE);
+        }
         binding.etUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -46,10 +50,13 @@ public class AddNewUserFragment extends Fragment implements TransactionObserver 
                 if(user != null){
                     binding.etMobile.setText(user.mobile);
                     binding.etPassword.setText(user.password);
+                    if(user.userType == UserType.affiliate)
+                    binding.etAffiliatePercent.setText(String.valueOf(user.affiliatePercent));
                 }
                 else{
                     binding.etMobile.setText("");
                     binding.etPassword.setText("");
+                    binding.etAffiliatePercent.setText("");
                 }
             }
 
@@ -63,6 +70,8 @@ public class AddNewUserFragment extends Fragment implements TransactionObserver 
             String username = Objects.requireNonNull(binding.etUsername.getText()).toString();
             String password = Objects.requireNonNull(binding.etPassword.getText()).toString();
             String mobile = Objects.requireNonNull(binding.etMobile.getText()).toString();
+            String affiliatePercent = Objects.requireNonNull(binding.etAffiliatePercent.getText()).toString();
+
             if (username.isEmpty()){
                 Toast.makeText(requireContext(), "Username must be given", Toast.LENGTH_SHORT).show();
                 return;
@@ -75,7 +84,19 @@ public class AddNewUserFragment extends Fragment implements TransactionObserver 
                 Toast.makeText(requireContext(), "mobile number must be given", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (affiliatePercent.isEmpty() && isAffiliate()){
+                Toast.makeText(requireContext(), "Affiliate percent must be given", Toast.LENGTH_SHORT).show();
+                return;
+            }
             User user = new User(username, password, isAffiliate() ? UserType.affiliate : UserType.user, mobile);
+
+            try {
+                if (isAffiliate())
+                    user.affiliatePercent = Integer.parseInt(affiliatePercent);
+            }
+            catch (NumberFormatException e){
+                Toast.makeText(requireContext(), "Affiliate percent must be a number", Toast.LENGTH_SHORT).show();
+            }
             Constant.network.addUser(user);
         });
         return binding.getRoot();
@@ -94,5 +115,6 @@ public class AddNewUserFragment extends Fragment implements TransactionObserver 
         binding.etUsername.setText("");
         binding.etPassword.setText("");
         binding.etMobile.setText("");
+        binding.etAffiliatePercent.setText("");
     }
 }

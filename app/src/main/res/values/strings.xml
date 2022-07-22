@@ -39,7 +39,7 @@
     <string name="amount">Amount</string>
     <string name="bkash">BKash</string>
     <string name="transaction_type">Transaction Type</string>
-    <string name="transaction_process">Process</string>
+    <string name="transaction_process">Transaction Process</string>
     <string name="date">Date</string>
     <string name="withdraw_request">Withdraw Request</string>
     <string name="deposit_request">Deposit Request</string>
@@ -62,4 +62,7 @@
     <string name="contact_us">Contact us</string>
     <string name="please_contact_on">Please contact on</string>
     <string name="change_phone_number">Change Phone Number</string>
+    <string name="transaction_number">Transaction Number</string>
+    <string name="affiliate_percent">Affiliate Percent</string>
+    <string name="advertisement">Advertisement</string>
 </resources>

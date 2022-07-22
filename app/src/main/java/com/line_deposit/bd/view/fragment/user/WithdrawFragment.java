@@ -60,10 +60,6 @@ public class WithdrawFragment extends Fragment implements TransactionObserver, T
                 Toast.makeText(requireContext(), "Minimum withdraw limit "+ limit, Toast.LENGTH_SHORT).show();
             return;
             }
-            if (amount > Constant.user.balance){
-                Toast.makeText(requireContext(), "You have not sufficient balance. Your balance is "+ Constant.user.balance, Toast.LENGTH_SHORT).show();
-                return;
-            }
             Transaction transaction = new Transaction();
             transaction.mobileNumber = mobileNumber;
             transaction.amount = amount;

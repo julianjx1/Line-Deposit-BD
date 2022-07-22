@@ -13,7 +13,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.line_deposit.bd.R;
@@ -23,13 +26,13 @@ import com.line_deposit.bd.view.fragment.admin.AdminHomeFragment;
 import com.line_deposit.bd.view.fragment.user.HomeFragment;
 import com.line_deposit.bd.view.fragment.user.ShowTransactionsFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdminStatusObserver{
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-
-
+    TextView status;
+    Switch statusSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.username);
         TextView navBalance = (TextView) headerView.findViewById(R.id.balance);
+        LinearLayout adminStatusLayout = findViewById(R.id.admin_status_layout);
+        status = findViewById(R.id.admin_status);
+        statusSwitch = findViewById(R.id.status_setup);
         navUsername.setText(Constant.user.username);
         navBalance.setText(String.valueOf(Constant.user.balance));
         setSupportActionBar(toolbar);
@@ -52,12 +58,19 @@ public class MainActivity extends AppCompatActivity {
 
         toggle.syncState();
 
+        Constant.network.adminStatusObserver = this;
+        Constant.network.isAdminActive();
+
         switch (Constant.user.userType){
             case affiliate:
             case user:
+                statusSwitch.setVisibility(View.GONE);
+                status.setVisibility(View.VISIBLE);
                 loadFragment(new HomeFragment());
                 break;
             case admin:
+                statusSwitch.setVisibility(View.VISIBLE);
+                status.setVisibility(View.GONE);
                 loadFragment(new AdminHomeFragment());
                 break;
         }
@@ -96,6 +109,16 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
+
+        statusSwitch.setOnClickListener(view -> {
+            Constant.network.updateUserStatus(statusSwitch.isChecked());
+            if (statusSwitch.isChecked()){
+                Toast.makeText(MainActivity.this, "Your are now online", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(MainActivity.this, "Your are now offline", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -121,5 +144,21 @@ public class MainActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         }
+    }
+
+
+    @Override
+    public void isAdminActive(Boolean status) {
+        statusSwitch.setChecked(status);
+        if (status)
+        {
+         this.status.setText("Online");
+         this.status.setBackground(getDrawable(R.drawable.green_round_background));
+        }
+        else{
+            this.status.setText("Offline");
+            this.status.setBackground(getDrawable(R.drawable.red_round_background));
+        }
+
     }
 }
