@@ -45,36 +45,6 @@
                android:inputType="none"/>
        </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/mobile_number_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            >
-            <TextView
-                android:id="@+id/show_number"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/please_send_money_on"
-                android:textAlignment="center"
-                app:hintEnabled="false"/>
-            <TextView
-                android:id="@+id/number"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textIsSelectable="true"
-                android:textAlignment="center"
-                app:hintEnabled="false"/>
-
-
-        </LinearLayout>
-
-
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +62,7 @@
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_mobile_number_deposit"
+                android:id="@+id/number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/mobile_number"

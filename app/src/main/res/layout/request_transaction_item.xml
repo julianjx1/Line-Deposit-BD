@@ -152,7 +152,27 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/transaction_type"
+                            android:text="@string/transaction_number"
+                            android:textSize="15sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" : "
+                            android:textSize="15sp"/>
+                        <TextView
+                            android:id="@+id/transaction_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{transaction.transactionNumber}"
+                            android:textSize="15sp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transaction_process"
                             android:textSize="15sp"/>
                         <TextView
                             android:layout_width="wrap_content"

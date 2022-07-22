@@ -51,6 +51,7 @@ public class TransctionsAdapter extends RecyclerView.Adapter<TransctionsAdapter.
         holder.date.setText(Constant.getDate(transaction.date));
         holder.paymentType.setText(transaction.paymentType.toString());
         holder.transactionProcess.setText(transaction.transactionProcess.toString());
+        holder.transactionNumber.setText(transaction.transactionNumber.toString());
         switch (transaction.transactionProcess){
             case Rejected:
                 holder.transactionProcess.setTextColor(context.getColor(R.color.red));
@@ -82,13 +83,14 @@ public class TransctionsAdapter extends RecyclerView.Adapter<TransctionsAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public  TextView mobileNumber, transactionId, amount, transactionType, paymentType, transactionProcess, date;
+        public  TextView mobileNumber, transactionId, amount, transactionType, paymentType, transactionProcess, transactionNumber, date;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mobileNumber = itemView.findViewById(R.id.mobile_number);
             transactionId = itemView.findViewById(R.id.transaction_id);
             amount = itemView.findViewById(R.id.amount);
             transactionType = itemView.findViewById(R.id.transaction_type);
+            transactionNumber = itemView.findViewById(R.id.transaction_number);
             paymentType = itemView.findViewById(R.id.payment_type);
             transactionProcess = itemView.findViewById(R.id.transaction_process);
             date = itemView.findViewById(R.id.date);

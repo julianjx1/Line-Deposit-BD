@@ -35,6 +35,7 @@ public class AdminHomeFragment extends Fragment {
         MaterialButton changeTransactionLimitButton = view.findViewById(R.id.btn_change_transaction_limit);
         MaterialButton addNewUserButton = view.findViewById(R.id.btn_add_new_userr);
         MaterialButton affiliaterButton = view.findViewById(R.id.btn_affiliate);
+        MaterialButton advertiseButton = view.findViewById(R.id.btn_advertise);
 
         Constant.network.userList();
         Constant.network.getTransactionProcessList();
@@ -64,6 +65,7 @@ public class AdminHomeFragment extends Fragment {
         changeTransactionLimitButton.setOnClickListener(v -> loadFragment(new TransactionLimitFragment()));
         addNewUserButton.setOnClickListener(v -> loadFragment(new AddNewUserFragment()));
         affiliaterButton.setOnClickListener(v -> loadFragment(new AffiliateFragment()));
+        advertiseButton.setOnClickListener(v -> loadFragment(new AdvertisementFragment()));
         return  view;
     }
 

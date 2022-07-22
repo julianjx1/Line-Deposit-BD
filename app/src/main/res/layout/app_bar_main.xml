@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,10 +10,76 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.appcompat.widget.Toolbar
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/toolbar"/>
+            android:layout_height="match_parent">
+
+            <!-- ToolBar widget -->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@string/home"
+                app:titleTextColor="#ffff" />
+
+            <!-- Right most TextView -->
+            <LinearLayout
+                android:id="@+id/admin_status_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar"
+                app:layout_constraintTop_toTopOf="parent"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Operator:"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/admin_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Online"
+                    android:textColor="#ffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/green_round_background"
+                    android:padding="5dp"
+                     />
+
+                <Switch
+                    android:id="@+id/status_setup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:theme="@style/SCBSwitch"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </LinearLayout>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     </com.google.android.material.appbar.AppBarLayout>
     <include layout="@layout/container_main"/>

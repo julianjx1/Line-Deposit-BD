@@ -8,6 +8,8 @@ public class User {
     public String affiliateUser;
     public String deviceToken;
     public int balance = 0;
+    public int affiliatePercent = 100;
+
     public User(String username, String password, UserType userType, String mobile) {
         this.username = username;
         this.password = password;

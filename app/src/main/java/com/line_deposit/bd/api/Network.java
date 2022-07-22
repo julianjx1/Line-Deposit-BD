@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.line_deposit.bd.model.Advertisement;
 import com.line_deposit.bd.model.PaymentType;
 import com.line_deposit.bd.model.Transaction;
 import com.line_deposit.bd.model.TransactionProcess;
@@ -19,7 +20,9 @@ import com.line_deposit.bd.model.push_notification.request.NotificationData;
 import com.line_deposit.bd.model.push_notification.request.PushNotificationRequest;
 import com.line_deposit.bd.model.push_notification.response.PushNotificationResponse;
 import com.line_deposit.bd.utilites.Constant;
+import com.line_deposit.bd.view.AdminStatusObserver;
 import com.line_deposit.bd.view.Authentication.LoginObserver;
+import com.line_deposit.bd.view.fragment.admin.AdvertisementObserver;
 import com.line_deposit.bd.view.fragment.admin.TransactionLimitObserver;
 import com.line_deposit.bd.view.fragment.admin.TransactionRequestObserver;
 import com.line_deposit.bd.view.fragment.admin.affiliate.MembersObserver;
@@ -44,6 +47,8 @@ public class Network {
     public TransactionRequestObserver transactionRequestObserver;
     public MembersObserver membersObserver;
     public TransactionLimitObserver limitObserver;
+    public AdminStatusObserver adminStatusObserver;
+    public AdvertisementObserver advertisementObserver;
     private FirebaseApiInterface firebaseApiInterface = FirebaseApiClient.getClient().create(FirebaseApiInterface.class);
     private final String ADMIN = "admin";
     private String deviceToken = "";
@@ -66,6 +71,60 @@ public class Network {
                     }
                 });
     }
+
+    public void updateUserStatus(Boolean status){
+        databaseReference.child("active")
+                .child(Constant.user.username)
+                .child("status")
+                .setValue(status);
+    }
+
+    public void isAdminActive(){
+        databaseReference.child("active")
+                .child("admin")
+                .child("status")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Boolean status = snapshot.getValue(Boolean.class);
+                        if (status != null && adminStatusObserver != null)
+                        adminStatusObserver.isAdminActive(status);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    public void setAdvertisement(Advertisement advertisement){
+        databaseReference.child("advertisement")
+                .setValue(advertisement)
+                .addOnSuccessListener(unused ->{
+                    if (transactionObserver != null)
+                    transactionObserver.onTransactionUpdate(true, "Information saved successfully");
+                } );
+    }
+
+    public void getAdvertisement(){
+        databaseReference.child("advertisement")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Advertisement advertisement = snapshot.getValue(Advertisement.class);
+                        if (advertisementObserver != null)
+                            advertisementObserver.getAdvertisement(advertisement);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+
     public void affiliateMembersList(User affiliate, String purpose){
         databaseReference.child("affiliate")
                 .child(affiliate.username)
@@ -110,8 +169,11 @@ public class Network {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                      if(limitObserver != null)
-                       limitObserver.getLimit(snapshot.getValue(Integer.class));
+                      if(limitObserver != null )
+                          if(snapshot.exists())
+                            limitObserver.getLimit(snapshot.getValue(Integer.class));
+                          else
+                              limitObserver.getLimit(0);
                     }
 
                     @Override
@@ -335,8 +397,6 @@ public class Network {
                 userInfo.balance += transaction.amount;
             } else {
                 userInfo.balance -= transaction.amount;
-                if (userInfo.balance < 0)
-                    userInfo.balance = 0;
             }
         }
         updateUserInformation(userInfo);
@@ -346,10 +406,11 @@ public class Network {
             User user = Constant.userMap.get(affiliateUser);
             assert user != null;
             if(transaction.transactionProcess == TransactionProcess.Completed) {
+
                 if (transaction.paymentType == PaymentType.Deposit) {
-                    user.balance += transaction.amount * 0.1;
+                    user.balance += transaction.amount * (user.affiliatePercent/ 100);
                 } else {
-                    user.balance -= transaction.amount * 0.1;
+                    user.balance -= transaction.amount * (user.affiliatePercent/ 100);
                     if (user.balance < 0)
                         user.balance = 0;
                 }
