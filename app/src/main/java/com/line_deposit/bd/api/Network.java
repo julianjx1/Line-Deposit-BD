@@ -408,11 +408,10 @@ public class Network {
             if(transaction.transactionProcess == TransactionProcess.Completed) {
 
                 if (transaction.paymentType == PaymentType.Deposit) {
-                    user.balance += transaction.amount * (user.affiliatePercent/ 100);
+                    user.balance += (transaction.amount * user.affiliatePercent)/ 100;
                 } else {
-                    user.balance -= transaction.amount * (user.affiliatePercent/ 100);
-                    if (user.balance < 0)
-                        user.balance = 0;
+                    user.balance -= (transaction.amount * user.affiliatePercent)/ 100;
+
                 }
             }
             databaseReference.child("users")
